@@ -6,6 +6,7 @@ TEMPLATE_DEBUG = DEBUG
 
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
+sys.path.insert(0, os.path.join(PROJECT_ROOT, 'lib'))
 
 ADMINS = (
     ('Your Name', 'your_email@domain.com'),

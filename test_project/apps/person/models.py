@@ -10,6 +10,8 @@ class Contacts(models.Model):
 blank=True)
     phone = models.CharField(u"Phone", max_length=10, null=True, blank=True)
 
+    def __unicode__(self):
+        return u"%s, %s" % (self.address, self.phone)
 
 class Profile(models.Model):
     """
@@ -21,7 +23,7 @@ class Profile(models.Model):
     birthday = models.DateField(u"Birthday", null=True, blank=True)
 
     def __unicode__(self):
-        return unicode(self.name)
+        return u"User %s profile" % self.user
 
     class Meta:
         verbose_name = u"Profile"
