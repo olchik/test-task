@@ -1,0 +1,62 @@
+{% extends 'base.html' %} 
+{% block header %}
+	Personal info
+{% endblock %}
+{% block content %}
+	<table>
+	<tr>
+		<td>
+			Nick name:
+		</td>
+		<td>
+			{{ user.username }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			First Name:
+		</td>
+		<td>
+			{{ user.first_name }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Last name:
+		</td>
+		<td>
+			{{ user.last_name }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Email:
+		</td>
+		<td>
+			{{ user.email }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Phone:
+		</td>
+		<td>
+			{{ user.get_profile.fk_contacts.phone }}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Address:
+		</td>
+		<td>
+			{{ user.get_profile.fk_contacts.address }}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			{{ user.get_profile.bio }}
+		</td>
+	</tr>
+	
+	</table>
+{% endblock %} 

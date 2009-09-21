@@ -1,0 +1,38 @@
+[
+    {
+        "pk": "1",
+        "model": "auth.user",
+        "fields": {
+            "username": "root",
+            "first_name": "Olga",
+            "last_name": "Druchek",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2009-09-21 15:52:31",
+            "groups": [],
+            "user_permissions": [],
+            "password": "sha1$6efc0$f93efe9fd7542f25a7be94871ea45aa95de57161",
+            "email": "olchikd@gmail.com",
+            "date_joined": "2009-09-21 15:52:31"
+        }
+    },
+    {
+        "pk": "1",
+        "model": "person.contacts",
+        "fields": {
+            "address": "Khakov",
+            "phone": "80634161605"
+        }
+    },
+    {
+        "pk": "1",
+        "model": "person.profile",
+        "fields": {
+            "user": "1",
+            "fk_contacts": "1",
+            "bio": "mine biography",
+            "birthday" : "1987-08-12"
+           }
+    }
+]

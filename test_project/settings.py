@@ -1,31 +1,29 @@
-# Django settings for test_project project.
+import sys
+import os.path
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
+
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    ('Your Name', 'your_email@domain.com'),
 )
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = ''           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = ''             # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+DATABASE_ENGINE = 'sqlite3'
+DATABASE_NAME = os.path.join(PROJECT_ROOT, 'db.sqlite')
+DATABASE_SUPPORTS_TRANSACTIONS = True
+DATABASE_USER = ''
+DATABASE_PASSWORD = ''
+DATABASE_HOST = ''
+DATABASE_PORT = ''
 
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
-TIME_ZONE = 'America/Chicago'
 
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'Europe/Kiev'
+LANGUAGE_CODE = 'ua'
 
 SITE_ID = 1
 
@@ -65,15 +63,24 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'test_project.urls'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.admin',
+    'person',
 )
+
+FIXTURE_DIRS = (
+    os.path.join(PROJECT_ROOT, 'fixtures'),
+)
+
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_ROOT, 'templates'),
+)
+
+AUTH_PROFILE_MODULE = 'person.profile'
