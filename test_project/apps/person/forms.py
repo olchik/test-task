@@ -43,6 +43,9 @@ class ProfileEditForm(forms.ModelForm):
             self.fields["bio"].initial = profile.bio
             self.fields["phone"].initial = contacts.phone
             self.fields["address"].initial = contacts.address
+        # NOTE: Task 7: Reverse ordering of fields
+        self.fields.keyOrder.reverse()
+        
 
     def save(self, *args, **kwargs):
         super(ProfileEditForm, self).save(*args, **kwargs)
