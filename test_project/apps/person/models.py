@@ -17,6 +17,10 @@ blank=True)
     def __unicode__(self):
         return u"%s, %s" % (self.address, self.phone)
 
+    class Meta:
+        verbose_name = u"Contact"
+        verbose_name_plural = u"Contacts"
+
 
 class Profile(models.Model):
     """
