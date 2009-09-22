@@ -60,6 +60,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'statistics.middleware.SQLLogMiddleware',
 )
 
 ROOT_URLCONF = 'test_project.urls'
@@ -73,6 +74,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'person',
     'registration',
+    'statistics',
 )
 
 FIXTURE_DIRS = (

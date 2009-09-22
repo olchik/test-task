@@ -9,7 +9,7 @@ sys.path.insert(0, 'C:\\test-task\\test_project')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 from django.conf import settings
-from tddspry.django import HttpTestCase, DatabaseTestCase
+from tddspry.django import DatabaseTestCase
 from person.models import Contacts, Profile
 
 DEFAULT_ADDRESS = "Lviv, Zelena str 130"
