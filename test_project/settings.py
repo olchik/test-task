@@ -97,4 +97,7 @@ ACCOUNT_ACTIVATION_DAYS = 5
 
 TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.auth",
+    'context_processors.settings_processor',
 ]
+
+DEFAULT_GREETING = "Hello, everyone!"

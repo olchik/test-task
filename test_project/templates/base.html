@@ -5,6 +5,7 @@
 		<link href="/static/style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
+		{{ settings.DEFAULT_GREETING }}
 		<div id="navigation">
 			{% block navigation %}
 				{% if user.is_authenticated %}

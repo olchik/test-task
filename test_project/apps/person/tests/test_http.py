@@ -40,6 +40,15 @@ class TestHomePage(HttpTestCase):
         self.find(user.get_profile().bio)
         self.find(user.get_profile().birthday)
 
+    def test_context_processor(self):
+        """
+        Tests whether settings has been added to context.
+        Tries to find DEFAULT_GREETING string from settings.
+        """
+        self.go200('/login/')
+        self.url('/login/')
+        self.find(settings.DEFAULT_GREETING)
+
 
 class TestAuthorization(HttpTestCase):
     """
