@@ -5,6 +5,19 @@
 		<link href="/static/style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
+		<div id="navigation">
+			{% block navigation %}
+				{% if user.is_authenticated %}
+					Hello, {{ user.username }}! <br/>
+				{% endif %}
+				<a href="/">Home</a> | 
+				{% if user.is_authenticated %}
+					<a href="{% url auth_logout %}">Logout</a>
+				{% else %}
+					<a href="{% url auth_login %}">Login</a> | <a href="{% url registration_register %}">Register</a>
+				{% endif %}	
+			{% endblock %}
+		</div>
 		<div id="content">
 			<h1>{% block header%}{% endblock %}</h1>
 			{% block content %}{% endblock %}

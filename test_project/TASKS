@@ -4,7 +4,7 @@
          * manage.py runserver
          * заходимо в браузер і всі дані вже є,тобто вони завантажились з
 fixtures																		1 - 2h		2h 20m
-  2. auth Додати авторизацію цієї сторінки										1 - 1.5h
+  2. auth Додати авторизацію цієї сторінки										1 - 1.5h	2h
   3. middleware Зробити middleware що зберігає всі запити в базу				1 - 1.5h	
   4. template context створити template-context-processor який додає
 django.settings в контекст														0.5 - 1h														

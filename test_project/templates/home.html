@@ -1,7 +1,12 @@
-{% extends 'base.html' %} 
-{% block header %}
+{% extends 'base.html'  %}
+{% block title %}
+	Home page
+{% endblock %}
+
+{% block header%}
 	Personal info
 {% endblock %}
+
 {% block content %}
 	<table>
 	<tr>
@@ -53,10 +58,17 @@
 		</td>
 	</tr>
 	<tr>
+		<td>
+			Birthday:
+		</td>
+		<td>
+			{{ user.get_profile.birthday }}
+		</td>
+	</tr>
+	<tr>
 		<td colspan="2">
 			{{ user.get_profile.bio }}
 		</td>
 	</tr>
-	
 	</table>
-{% endblock %} 
+{% endblock %}

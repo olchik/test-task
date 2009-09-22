@@ -72,6 +72,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'person',
+    'registration',
 )
 
 FIXTURE_DIRS = (
@@ -85,3 +86,13 @@ TEMPLATE_DIRS = (
 )
 
 AUTH_PROFILE_MODULE = 'person.profile'
+
+
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_ACTIVATION_DAYS = 5
+
+TEMPLATE_CONTEXT_PROCESSORS = [
+    "django.core.context_processors.auth",
+]
