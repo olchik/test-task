@@ -1,14 +1,9 @@
 """
 Tests suite for person app
 """
-import sys
 import os
+os.environ["DJANGO_SETTINGS_MODULE"] = "test_project.settings"
 
-sys.path.insert(0, 'c:\\test-task')
-sys.path.insert(0, 'C:\\test-task\\test_project')
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
-
-from django.conf import settings
 from tddspry.django import DatabaseTestCase
 from person.models import Contacts, Profile
 

@@ -1,12 +1,8 @@
 """
 Tests suite for person app
 """
-import sys
 import os
-
-sys.path.insert(0, 'c:\\test-task')
-sys.path.insert(0, 'C:\\test-task\\test_project')
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+os.environ["DJANGO_SETTINGS_MODULE"] = "test_project.settings"
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
