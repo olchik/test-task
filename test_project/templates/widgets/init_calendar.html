@@ -1,0 +1,3 @@
+<script type="text/javascript">
+$(function(){Date.format = 'yyyy-mm-dd';var textbox = $('#id_{{ name }}');textbox.datePicker({startDate:'1900-01-01', endDate: (new Date()).asString()});textbox.datePicker().val(textbox.val()).trigger('change');});
+</script>

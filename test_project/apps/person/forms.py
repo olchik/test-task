@@ -2,24 +2,13 @@ from django import forms
 from person.models import Contacts
 from django.contrib.auth.models import User
 from django.utils.safestring import mark_safe
+from django.template.loader import get_template, Context
 
 
 class DateWidget(forms.widgets.Input):
     """
     Selecting date in calendar widget
     """
-
-    JS_INIT_FORMAT_STRING = """<script type="text/javascript">
-            $(function(){
-                Date.format = 'yyyy-mm-dd';
-                var textbox = $('#id_%(name)s')
-                textbox.datePicker({
-                    startDate:'1900-01-01',
-                    endDate: (new Date()).asString()
-                });
-                textbox.datePicker().val(textbox.val()).trigger('change');
-             });
-        </script>"""
 
     class Media:
         css = {'all': ('/static/datePicker.css', ), }
@@ -28,7 +17,10 @@ class DateWidget(forms.widgets.Input):
 
     def render(self, name, value, attrs=None):
         output = super(DateWidget, self).render(name, value, attrs)
-        output = output + self.JS_INIT_FORMAT_STRING % ({u"name": name})
+        template = get_template("widgets/init_calendar.html")
+        context = Context({"name": name, })
+        init_script = template.render(context)
+        output = output + init_script
         return mark_safe(output)
 
 

@@ -143,5 +143,8 @@ class TestProfiles(HttpTestCase):
         user = self.helper('create_user')
         self.login(USERNAME, PASSWORD)
         self.go200(reverse('person.views.edit_profile'))
-        custom_js = DateWidget.JS_INIT_FORMAT_STRING % {u"name": "birthday", }
+        custom_js = """$(function(){Date.format = 'yyyy-mm-dd';var textbox = \
+$('#id_birthday');textbox.datePicker({startDate:'1900-01-01', endDate: \
+(new Date()).asString()});textbox.datePicker().val(textbox.val()).\
+trigger('change');});"""
         self.find(custom_js, flat=True)
