@@ -2,10 +2,10 @@
 <html>
 	<head>
 		<title>{% block title %}{% endblock %}</title>
-		<link href="/static/style.css" rel="stylesheet" type="text/css" />
+		<link href="/static/styles.css" rel="stylesheet" type="text/css" />
+		{% block extrahead %}{% endblock %}
 	</head>
 	<body>
-		{{ settings.DEFAULT_GREETING }}
 		<div id="navigation">
 			{% block navigation %}
 				{% if user.is_authenticated %}
@@ -19,6 +19,7 @@
 				{% endif %}	
 			{% endblock %}
 		</div>
+		{{ settings.DEFAULT_GREETING }}
 		<div id="content">
 			<h1>{% block header%}{% endblock %}</h1>
 			{% block content %}{% endblock %}

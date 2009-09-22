@@ -1,6 +1,35 @@
 from django import forms
 from person.models import Contacts
 from django.contrib.auth.models import User
+from django.utils.safestring import mark_safe
+
+
+class DateWidget(forms.widgets.Input):
+    """
+    Selecting date in calendar widget
+    """
+
+    JS_INIT_FORMAT_STRING = """<script type="text/javascript">
+            $(function(){
+                Date.format = 'yyyy-mm-dd';
+                var textbox = $('#id_%(name)s')
+                textbox.datePicker({
+                    startDate:'1900-01-01',
+                    endDate: (new Date()).asString()
+                });
+                textbox.datePicker().val(textbox.val()).trigger('change');
+             });
+        </script>"""
+
+    class Media:
+        css = {'all': ('/static/datePicker.css', ), }
+        js = ('/static/date.js',
+              '/static/jquery.datePicker.js', )
+
+    def render(self, name, value, attrs=None):
+        output = super(DateWidget, self).render(name, value, attrs)
+        output = output + self.JS_INIT_FORMAT_STRING % ({u"name": name})
+        return mark_safe(output)
 
 
 class ProfileEditForm(forms.ModelForm):
@@ -9,7 +38,7 @@ class ProfileEditForm(forms.ModelForm):
     """
     phone = forms.CharField(label=u'Phone', required=False)
     address = forms.CharField(label=u'Address', required=False)
-    birthday = forms.DateField(required=False)
+    birthday = forms.DateField(required=False, widget=DateWidget)
     bio = forms.CharField(required=False, widget=forms.Textarea())
 
     def __init__(self, *args, **kwargs):

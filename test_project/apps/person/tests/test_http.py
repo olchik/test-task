@@ -12,6 +12,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from tddspry.django import HttpTestCase
 from tddspry.django.helpers import PASSWORD, USERNAME
+from person.forms import DateWidget
 
 NEW_FIRST_NAME = "olchik"
 NEW_LAST_NAME = "ABS"
@@ -130,3 +131,21 @@ class TestProfiles(HttpTestCase):
         self.formvalue(1, 'id_email', "email")
         self.submit200()
         self.find("Enter a valid e-mail address.")
+
+    def test_datepicker_loadded(self):
+        """
+        Checks that birthday field use data picker in profile edit page
+        """
+        # Checks whether media can be loaded
+        for css_urls in DateWidget.Media.css.values():
+            for css_url in css_urls:
+                self.go200(css_url)
+        for js_url in DateWidget.Media.js:
+            self.go200(js_url)
+
+        # Checks whether java script that binds data picker loaded
+        user = self.helper('create_user')
+        self.login(USERNAME, PASSWORD)
+        self.go200(reverse('person.views.edit_profile'))
+        custom_js = DateWidget.JS_INIT_FORMAT_STRING % {u"name": "birthday", }
+        self.find(custom_js, flat=True)

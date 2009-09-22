@@ -5,6 +5,9 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 PROJECT_ROOT = os.path.dirname(__file__)
+BASEDIR = os.path.abspath(os.path.join(PROJECT_ROOT, '..'))
+sys.path.insert(0, BASEDIR)
+sys.path.insert(0, PROJECT_ROOT)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'lib'))
 

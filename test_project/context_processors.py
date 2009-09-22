@@ -1,4 +1,4 @@
-import settings
+from django.conf import settings
 
 
 def settings_processor(request):
