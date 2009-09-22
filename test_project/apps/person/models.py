@@ -40,9 +40,10 @@ def create_contacts(sender, **kwargs):
     Creates contacts, when profile is creating.
     """
     profile = kwargs['instance']
-    contact = Contacts()
-    contact.save()
-    profile.fk_contacts = contact
+    if not hasattr(profile, "fk_contacts"):
+        contact = Contacts()
+        contact.save()
+        profile.fk_contacts = contact
 
 
 def create_profile(sender, **kwargs):

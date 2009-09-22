@@ -9,7 +9,7 @@ fixtures																		1 - 2h		2h 20m
   4. template context створити template-context-processor який додає
 django.settings в контекст														0.5 - 1h	15min 													
   5. forms - створити сторінку з формою де можна редагувати дані, що показані
-на першій сторінці																1.0h
+на першій сторінці																1.0h		1h
   6. forms-widgets - для дати народження на тій же сторінці зробити widget
 календарика																		0.5	- 1h
   7. forms-model-extra - (всі попередні задачі робились же через

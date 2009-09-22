@@ -9,8 +9,17 @@ sys.path.insert(0, 'C:\\test-task\\test_project')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from tddspry.django import HttpTestCase
 from tddspry.django.helpers import PASSWORD, USERNAME
+
+NEW_FIRST_NAME = "olchik"
+NEW_LAST_NAME = "ABS"
+NEW_EMAIL = "email@email.com"
+NEW_PHONE = "911"
+NEW_ADDRESS = "Lviv, Antonovucha str."
+NEW_BIRTHDAY = "1987-12-12"
+NEW_BIO = "description"
 
 
 class TestHomePage(HttpTestCase):
@@ -80,3 +89,44 @@ class TestAuthorization(HttpTestCase):
         self.logout()
         self.go200('/')
         self.url('/login/')
+
+
+class TestProfiles(HttpTestCase):
+    """
+    Profiles tests
+    """
+
+    def test_edit_profile(self):
+        """
+        Test of editing profile
+        """
+        user = self.helper('create_user')
+        self.login(USERNAME, PASSWORD)
+        self.go200(reverse('person.views.edit_profile'))
+        self.formvalue(1, 'id_first_name', NEW_FIRST_NAME)
+        self.formvalue(1, 'id_last_name', NEW_LAST_NAME)
+        self.formvalue(1, 'id_email', NEW_EMAIL)
+        self.formvalue(1, 'id_phone', NEW_PHONE)
+        self.formvalue(1, 'id_address', NEW_ADDRESS)
+        self.formvalue(1, 'id_birthday', NEW_BIRTHDAY)
+        self.formvalue(1, 'id_bio', NEW_BIO)
+        self.submit200()
+        self.url('/')
+        self.find(NEW_FIRST_NAME)
+        self.find(NEW_LAST_NAME)
+        self.find(NEW_EMAIL)
+        self.find(NEW_PHONE)
+        self.find(NEW_ADDRESS)
+        self.find(NEW_BIRTHDAY)
+        self.find(NEW_BIO)
+
+    def test_invalid_email(self):
+        """
+        Test of editing profile. Filling invalid email.
+        """
+        user = self.helper('create_user')
+        self.login(USERNAME, PASSWORD)
+        self.go200(reverse('person.views.edit_profile'))
+        self.formvalue(1, 'id_email', "email")
+        self.submit200()
+        self.find("Enter a valid e-mail address.")
