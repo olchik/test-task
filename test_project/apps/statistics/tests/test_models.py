@@ -109,7 +109,7 @@ model_pk=MODEL_PK, operation_type=OPERATION_TYPE)
         model_log = self.assert_create(ModelLog, model=DEFAULT_MODEL,
 model_pk=MODEL_PK, operation_type=OPERATION_TYPE)
         self.assert_equal(unicode(model_log),
-                          u"Info about model %s" % DEFAULT_MODEL)
+                          u"ModelLog of %s model" % DEFAULT_MODEL)
 
     def test_login_user(self):
         """

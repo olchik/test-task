@@ -38,7 +38,7 @@ choices=OPERATION_TYPE)
     date = models.DateField("Date", auto_now=True)
 
     def __unicode__(self):
-        return u"Info about model %s" % self.model
+        return u"ModelLog of %s model" % self.model
 
     class Meta:
         verbose_name = u"Model manipulation info"
