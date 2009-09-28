@@ -28,7 +28,7 @@ class Profile(models.Model):
     """
     user = models.ForeignKey(User, unique=True, related_name="profile")
     bio = models.TextField(u"Bio", null=True, blank=True)
-    fk_contacts = models.ForeignKey(Contacts)
+    fk_contacts = models.OneToOneField(Contacts)
     birthday = models.DateField(u"Birthday", null=True, blank=True)
 
     def __unicode__(self):
@@ -39,26 +39,16 @@ class Profile(models.Model):
         verbose_name_plural = u"Profiles"
 
 
-def create_contacts(sender, **kwargs):
-    """
-    Creates contacts, when profile is creating.
-    """
-    profile = kwargs['instance']
-    if not hasattr(profile, "fk_contacts"):
-        contact = Contacts()
-        contact.save()
-        profile.fk_contacts = contact
-
-
-def create_profile(sender, **kwargs):
+def create_profile(sender, created, **kwargs):
     """
     Creates profile, when user has been created
     """
-    instance = kwargs['instance']
-    profile, is_new = Profile.objects.get_or_create(user=instance)
-    profile.save()
+    if created:
+        instance = kwargs['instance']
+        contact = Contacts()
+        contact.save()
+        profile = Profile(user=instance, fk_contacts=contact)
+        profile.save()
 
 
 post_save.connect(create_profile, sender=User)
-
-pre_save.connect(create_contacts, sender=Profile)
